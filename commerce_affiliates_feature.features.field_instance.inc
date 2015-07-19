@@ -13,7 +13,11 @@ function commerce_affiliates_feature_field_default_field_instances() {
   // Exported field_instance: 'user-user-field_commission'
   $field_instances['user-user-field_commission'] = array(
     'bundle' => 'user',
-    'default_value' => NULL,
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
     'deleted' => 0,
     'description' => '',
     'display' => array(
@@ -53,7 +57,11 @@ function commerce_affiliates_feature_field_default_field_instances() {
   // Exported field_instance: 'user-user-field_paid'
   $field_instances['user-user-field_paid'] = array(
     'bundle' => 'user',
-    'default_value' => NULL,
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
     'deleted' => 0,
     'description' => '',
     'display' => array(

@@ -110,5 +110,82 @@ function commerce_affiliates_feature_default_rules_configuration() {
       ]
     }
   }');
+  $items['rules_save_affiliate_uids_to_newly_created_user_profile'] = entity_import('rules_config', '{ "rules_save_affiliate_uids_to_newly_created_user_profile" : {
+      "LABEL" : "Save affiliate UIDs to newly created User Profile",
+      "PLUGIN" : "reaction rule",
+      "OWNER" : "rules",
+      "REQUIRES" : [ "rules_session_vars", "rules", "rules_conditional", "commerce" ],
+      "ON" : { "user_insert" : [] },
+      "IF" : [ { "session_key_exists" : { "data_key" : "commerce_affiliate_uid" } } ],
+      "DO" : [
+        { "load_data_from_session" : {
+            "USING" : { "data_key" : "commerce_affiliate_uid" },
+            "PROVIDE" : { "loaded_session_data" : { "session_affiliate_uid" : "Affiliate UID from session" } }
+          }
+        },
+        { "data_convert" : {
+            "USING" : { "type" : "integer", "value" : [ "session-affiliate-uid" ] },
+            "PROVIDE" : { "conversion_result" : { "affiliate_uid" : "Affiliate UID" } }
+          }
+        },
+        { "CONDITIONAL" : [
+            {
+              "IF" : { "entity_exists" : { "type" : "user", "property" : "uid", "value" : [ "affiliate-uid" ] } },
+              "DO" : [
+                { "entity_fetch" : {
+                    "USING" : { "type" : "user", "id" : [ "affiliate-uid" ] },
+                    "PROVIDE" : { "entity_fetched" : { "affiliate_user_1" : "Affiliate $user (level 1)" } }
+                  }
+                },
+                { "data_set" : {
+                    "data" : [ "account:field-referred-by-level-1" ],
+                    "value" : [ "affiliate-user-1" ]
+                  }
+                },
+                { "CONDITIONAL" : [
+                    {
+                      "IF" : { "NOT data_is_empty" : { "data" : [ "affiliate-user-1:field-referred-by-level-1" ] } },
+                      "DO" : [
+                        { "data_set" : {
+                            "data" : [ "account:field-referred-by-level-2" ],
+                            "value" : [ "affiliate-user-1:field-referred-by-level-1" ]
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                { "entity_save" : { "data" : [ "account" ] } }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }');
+  $items['rules_store_affiliate_id_in_session'] = entity_import('rules_config', '{ "rules_store_affiliate_id_in_session" : {
+      "LABEL" : "Store affiliate id in session",
+      "PLUGIN" : "reaction rule",
+      "OWNER" : "rules",
+      "REQUIRES" : [ "rules_url_argument", "rules_session_vars", "rules" ],
+      "ON" : { "init" : [] },
+      "IF" : [
+        { "rules_url_argument_argument_exists" : { "argument" : "aff" } },
+        { "NOT session_key_exists" : { "data_key" : "commerce_affiliate_uid" } }
+      ],
+      "DO" : [
+        { "rules_url_argument_rules_action_get_argument_from_url" : {
+            "USING" : { "type" : "decimal", "argument_name" : "aff" },
+            "PROVIDE" : { "argument_from_url" : { "affiliate_argument_from_url" : "Affiliate argument from URL" } }
+          }
+        },
+        { "add_data_to_session" : {
+            "data_key" : "commerce_affiliate_uid",
+            "data_value" : [ "affiliate-argument-from-url" ]
+          }
+        }
+      ]
+    }
+  }');
   return $items;
 }

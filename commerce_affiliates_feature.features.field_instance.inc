@@ -10,6 +10,96 @@
 function commerce_affiliates_feature_field_default_field_instances() {
   $field_instances = array();
 
+  // Exported field_instance:
+  // 'commerce_order-commerce_order-field_level_1_commission'
+  $field_instances['commerce_order-commerce_order-field_level_1_commission'] = array(
+    'bundle' => 'commerce_order',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'number',
+        'settings' => array(
+          'decimal_separator' => '.',
+          'prefix_suffix' => TRUE,
+          'scale' => 2,
+          'thousand_separator' => ' ',
+        ),
+        'type' => 'number_decimal',
+        'weight' => -4,
+      ),
+    ),
+    'entity_type' => 'commerce_order',
+    'field_name' => 'field_level_1_commission',
+    'label' => 'Level 1 Commission',
+    'required' => 0,
+    'settings' => array(
+      'max' => '',
+      'min' => '',
+      'prefix' => '',
+      'suffix' => '',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'number',
+      'settings' => array(),
+      'type' => 'number',
+      'weight' => -4,
+    ),
+  );
+
+  // Exported field_instance:
+  // 'commerce_order-commerce_order-field_level_2_commission'
+  $field_instances['commerce_order-commerce_order-field_level_2_commission'] = array(
+    'bundle' => 'commerce_order',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'number',
+        'settings' => array(
+          'decimal_separator' => '.',
+          'prefix_suffix' => TRUE,
+          'scale' => 2,
+          'thousand_separator' => ' ',
+        ),
+        'type' => 'number_decimal',
+        'weight' => -3,
+      ),
+    ),
+    'entity_type' => 'commerce_order',
+    'field_name' => 'field_level_2_commission',
+    'label' => 'Level 2 Commission',
+    'required' => 0,
+    'settings' => array(
+      'max' => '',
+      'min' => '',
+      'prefix' => '',
+      'suffix' => '',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'number',
+      'settings' => array(),
+      'type' => 'number',
+      'weight' => -3,
+    ),
+  );
+
   // Exported field_instance: 'user-user-field_commission'
   $field_instances['user-user-field_commission'] = array(
     'bundle' => 'user',
@@ -175,6 +265,8 @@ function commerce_affiliates_feature_field_default_field_instances() {
   // Translatables
   // Included for use with string extractors like potx.
   t('Commission');
+  t('Level 1 Commission');
+  t('Level 2 Commission');
   t('Paid');
   t('Referred By (Level 1)');
   t('Referred By (Level 2)');

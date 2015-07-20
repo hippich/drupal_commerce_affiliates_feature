@@ -16,6 +16,10 @@ function commerce_affiliates_feature_default_rules_configuration() {
       "TAGS" : [ "Redirecto" ],
       "REQUIRES" : [ "rules", "rules_conditional", "commerce_checkout" ],
       "ON" : { "commerce_checkout_complete" : [] },
+      "IF" : [
+        { "entity_has_field" : { "entity" : [ "commerce-order" ], "field" : "field_level_1_commission" } },
+        { "entity_has_field" : { "entity" : [ "commerce-order" ], "field" : "field_level_2_commission" } }
+      ],
       "DO" : [
         { "data_calc" : {
             "USING" : {
@@ -66,7 +70,13 @@ function commerce_affiliates_feature_default_rules_configuration() {
                     "value" : [ "affiliate-level-1-new-total" ]
                   }
                 },
-                { "entity_save" : { "data" : [ "commerce-order:owner:field-referred-by-level-1" ] } }
+                { "entity_save" : { "data" : [ "commerce-order:owner:field-referred-by-level-1" ] } },
+                { "data_set" : {
+                    "data" : [ "commerce-order:field-level-1-commission" ],
+                    "value" : [ "affiliate-level-1-commission" ]
+                  }
+                },
+                { "entity_save" : { "data" : [ "commerce-order" ] } }
               ]
             }
           ]
@@ -102,7 +112,13 @@ function commerce_affiliates_feature_default_rules_configuration() {
                     "value" : [ "affiliate-level-2-new-total" ]
                   }
                 },
-                { "entity_save" : { "data" : [ "commerce-order:owner:field-referred-by-level-2" ] } }
+                { "entity_save" : { "data" : [ "commerce-order:owner:field-referred-by-level-2" ] } },
+                { "data_set" : {
+                    "data" : [ "commerce-order:field-level-2-commission" ],
+                    "value" : [ "affiliate-level-2-commission" ]
+                  }
+                },
+                { "entity_save" : { "data" : [ "commerce-order" ] } }
               ]
             }
           ]

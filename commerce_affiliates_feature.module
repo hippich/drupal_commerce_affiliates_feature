@@ -1,5 +1,12 @@
 <?php
 /**
  * @file
+ * Code for the Commerce Affiliates Feature feature.
+ */
+
+include_once 'commerce_affiliates_feature.features.inc';
+
+/**
+ * @file
  * Drupal needs this blank file.
  */

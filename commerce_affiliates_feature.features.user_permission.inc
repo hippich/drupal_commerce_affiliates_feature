@@ -158,6 +158,25 @@ function commerce_affiliates_feature_user_default_permissions() {
     'module' => 'field_permissions',
   );
 
+  // Exported permission: 'view own commerce_order entities'.
+  $permissions['view own commerce_order entities'] = array(
+    'name' => 'view own commerce_order entities',
+    'roles' => array(
+      'administrator' => 'administrator',
+      'authenticated user' => 'authenticated user',
+    ),
+    'module' => 'commerce_order',
+  );
+
+  // Exported permission: 'view own commerce_order entities of bundle commerce_order'.
+  $permissions['view own commerce_order entities of bundle commerce_order'] = array(
+    'name' => 'view own commerce_order entities of bundle commerce_order',
+    'roles' => array(
+      'administrator' => 'administrator',
+    ),
+    'module' => 'commerce_order',
+  );
+
   // Exported permission: 'view own field_commission'.
   $permissions['view own field_commission'] = array(
     'name' => 'view own field_commission',

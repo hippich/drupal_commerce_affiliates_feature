@@ -10,6 +10,13 @@
 function commerce_affiliates_feature_user_default_permissions() {
   $permissions = array();
 
+  // Exported permission: 'access to affiliate feature'.
+  $permissions['access to affiliate feature'] = array(
+    'name' => 'access to affiliate feature',
+    'roles' => array(),
+    'module' => 'commerce_affiliates_feature',
+  );
+
   // Exported permission: 'create field_commission'.
   $permissions['create field_commission'] = array(
     'name' => 'create field_commission',

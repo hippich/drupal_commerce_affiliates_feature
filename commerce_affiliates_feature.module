@@ -6,7 +6,11 @@
 
 include_once 'commerce_affiliates_feature.features.inc';
 
-/**
- * @file
- * Drupal needs this blank file.
- */
+function commerce_affiliates_feature_permission() {
+    return array(
+        'access to affiliate feature' => array(
+            'title' => t('Access to Affiliate Feature'),
+            'description' => t('Allow user to collect commission for referring users to your site.'),
+        ),
+    );
+}

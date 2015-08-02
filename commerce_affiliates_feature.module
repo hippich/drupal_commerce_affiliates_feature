@@ -14,3 +14,9 @@ function commerce_affiliates_feature_permission() {
         ),
     );
 }
+
+function commerce_affiliates_feature_views_post_build(&$view) {
+    if ($view->name == 'affiliates_activity') {
+        $view->build_info['breadcrumb'] = array();
+    }
+}

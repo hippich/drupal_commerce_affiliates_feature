@@ -67,7 +67,6 @@ function commerce_affiliates_feature_views_default_views() {
   $handler->display->display_options['fields']['field_level_1_commission']['id'] = 'field_level_1_commission';
   $handler->display->display_options['fields']['field_level_1_commission']['table'] = 'field_data_field_level_1_commission';
   $handler->display->display_options['fields']['field_level_1_commission']['field'] = 'field_level_1_commission';
-  $handler->display->display_options['fields']['field_level_1_commission']['exclude'] = TRUE;
   $handler->display->display_options['fields']['field_level_1_commission']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_level_1_commission']['settings'] = array(
     'thousand_separator' => ' ',
@@ -79,7 +78,6 @@ function commerce_affiliates_feature_views_default_views() {
   $handler->display->display_options['fields']['field_level_2_commission']['id'] = 'field_level_2_commission';
   $handler->display->display_options['fields']['field_level_2_commission']['table'] = 'field_data_field_level_2_commission';
   $handler->display->display_options['fields']['field_level_2_commission']['field'] = 'field_level_2_commission';
-  $handler->display->display_options['fields']['field_level_2_commission']['exclude'] = TRUE;
   $handler->display->display_options['fields']['field_level_2_commission']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_level_2_commission']['settings'] = array(
     'thousand_separator' => ' ',
@@ -128,6 +126,7 @@ if ($row->field_referred_by_level_1 == $handler->view->args[0]) {
   $handler->display->display_options['arguments']['field_referred_by_level_1_target_id']['field'] = 'field_referred_by_level_1_target_id';
   $handler->display->display_options['arguments']['field_referred_by_level_1_target_id']['relationship'] = 'uid';
   $handler->display->display_options['arguments']['field_referred_by_level_1_target_id']['default_action'] = 'default';
+  $handler->display->display_options['arguments']['field_referred_by_level_1_target_id']['breadcrumb'] = '<none>';
   $handler->display->display_options['arguments']['field_referred_by_level_1_target_id']['default_argument_type'] = 'user';
   $handler->display->display_options['arguments']['field_referred_by_level_1_target_id']['default_argument_options']['user'] = FALSE;
   $handler->display->display_options['arguments']['field_referred_by_level_1_target_id']['summary']['number_of_records'] = '0';
@@ -139,11 +138,62 @@ if ($row->field_referred_by_level_1 == $handler->view->args[0]) {
   $handler->display->display_options['arguments']['field_referred_by_level_2_target_id']['field'] = 'field_referred_by_level_2_target_id';
   $handler->display->display_options['arguments']['field_referred_by_level_2_target_id']['relationship'] = 'uid';
   $handler->display->display_options['arguments']['field_referred_by_level_2_target_id']['default_action'] = 'default';
+  $handler->display->display_options['arguments']['field_referred_by_level_2_target_id']['breadcrumb'] = '<none>';
   $handler->display->display_options['arguments']['field_referred_by_level_2_target_id']['default_argument_type'] = 'user';
   $handler->display->display_options['arguments']['field_referred_by_level_2_target_id']['default_argument_options']['user'] = FALSE;
   $handler->display->display_options['arguments']['field_referred_by_level_2_target_id']['summary']['number_of_records'] = '0';
   $handler->display->display_options['arguments']['field_referred_by_level_2_target_id']['summary']['format'] = 'default_summary';
   $handler->display->display_options['arguments']['field_referred_by_level_2_target_id']['summary_options']['items_per_page'] = '25';
+  /* Filter criterion: Date: Date (commerce_order) */
+  $handler->display->display_options['filters']['date_filter']['id'] = 'date_filter';
+  $handler->display->display_options['filters']['date_filter']['table'] = 'commerce_order';
+  $handler->display->display_options['filters']['date_filter']['field'] = 'date_filter';
+  $handler->display->display_options['filters']['date_filter']['operator'] = '>=';
+  $handler->display->display_options['filters']['date_filter']['value']['min'] = '2015-08-02';
+  $handler->display->display_options['filters']['date_filter']['value']['max'] = '2015-08-02';
+  $handler->display->display_options['filters']['date_filter']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['date_filter']['expose']['operator_id'] = 'date_filter_op';
+  $handler->display->display_options['filters']['date_filter']['expose']['label'] = 'From';
+  $handler->display->display_options['filters']['date_filter']['expose']['operator'] = 'date_filter_op';
+  $handler->display->display_options['filters']['date_filter']['expose']['identifier'] = 'date_filter';
+  $handler->display->display_options['filters']['date_filter']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+    5 => 0,
+    6 => 0,
+    7 => 0,
+  );
+  $handler->display->display_options['filters']['date_filter']['form_type'] = 'date_popup';
+  $handler->display->display_options['filters']['date_filter']['date_fields'] = array(
+    'commerce_order.created' => 'commerce_order.created',
+  );
+  $handler->display->display_options['filters']['date_filter']['date_method'] = 'AND';
+  /* Filter criterion: Date: Date (commerce_order) */
+  $handler->display->display_options['filters']['date_filter_1']['id'] = 'date_filter_1';
+  $handler->display->display_options['filters']['date_filter_1']['table'] = 'commerce_order';
+  $handler->display->display_options['filters']['date_filter_1']['field'] = 'date_filter';
+  $handler->display->display_options['filters']['date_filter_1']['operator'] = '<=';
+  $handler->display->display_options['filters']['date_filter_1']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['date_filter_1']['expose']['operator_id'] = 'date_filter_1_op';
+  $handler->display->display_options['filters']['date_filter_1']['expose']['label'] = 'To';
+  $handler->display->display_options['filters']['date_filter_1']['expose']['operator'] = 'date_filter_1_op';
+  $handler->display->display_options['filters']['date_filter_1']['expose']['identifier'] = 'date_filter_1';
+  $handler->display->display_options['filters']['date_filter_1']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+    5 => 0,
+    6 => 0,
+    7 => 0,
+  );
+  $handler->display->display_options['filters']['date_filter_1']['form_type'] = 'date_popup';
+  $handler->display->display_options['filters']['date_filter_1']['date_fields'] = array(
+    'commerce_order.created' => 'commerce_order.created',
+  );
+  $handler->display->display_options['filters']['date_filter_1']['date_method'] = 'AND';
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');

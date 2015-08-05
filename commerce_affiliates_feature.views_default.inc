@@ -33,6 +33,16 @@ function commerce_affiliates_feature_views_default_views() {
   $handler->display->display_options['pager']['type'] = 'full';
   $handler->display->display_options['pager']['options']['items_per_page'] = '50';
   $handler->display->display_options['style_plugin'] = 'table';
+  /* Header: Global: PHP */
+  $handler->display->display_options['header']['php']['id'] = 'php';
+  $handler->display->display_options['header']['php']['table'] = 'views';
+  $handler->display->display_options['header']['php']['field'] = 'php';
+  $handler->display->display_options['header']['php']['php_output'] = '<?php global $user; ?>
+<?php $url = url(\'<front>\', array( \'query\' => array(\'aff\' => $user->uid), \'absolute\' => TRUE)); ?>
+<p>Your affiliate link: <?php print l($url, $url); ?></p>
+<p>Anytime someone make a purchase using your affiliate link you will receive <strong>10%</strong> of total.</p>
+<p>In addition to that you will receive <strong>20%</strong> of any income of people referred by you (i.e. 2nd level)</p>
+';
   /* No results behavior: Global: Text area */
   $handler->display->display_options['empty']['area']['id'] = 'area';
   $handler->display->display_options['empty']['area']['table'] = 'views';

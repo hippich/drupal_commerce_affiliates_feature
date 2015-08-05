@@ -77,6 +77,7 @@ function commerce_affiliates_feature_views_default_views() {
   $handler->display->display_options['fields']['field_level_1_commission']['id'] = 'field_level_1_commission';
   $handler->display->display_options['fields']['field_level_1_commission']['table'] = 'field_data_field_level_1_commission';
   $handler->display->display_options['fields']['field_level_1_commission']['field'] = 'field_level_1_commission';
+  $handler->display->display_options['fields']['field_level_1_commission']['exclude'] = TRUE;
   $handler->display->display_options['fields']['field_level_1_commission']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_level_1_commission']['settings'] = array(
     'thousand_separator' => ' ',
@@ -88,6 +89,7 @@ function commerce_affiliates_feature_views_default_views() {
   $handler->display->display_options['fields']['field_level_2_commission']['id'] = 'field_level_2_commission';
   $handler->display->display_options['fields']['field_level_2_commission']['table'] = 'field_data_field_level_2_commission';
   $handler->display->display_options['fields']['field_level_2_commission']['field'] = 'field_level_2_commission';
+  $handler->display->display_options['fields']['field_level_2_commission']['exclude'] = TRUE;
   $handler->display->display_options['fields']['field_level_2_commission']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_level_2_commission']['settings'] = array(
     'thousand_separator' => ' ',
@@ -123,9 +125,13 @@ function commerce_affiliates_feature_views_default_views() {
   $handler->display->display_options['fields']['php']['use_php_setup'] = 0;
   $handler->display->display_options['fields']['php']['php_output'] = '<?php
 if ($row->field_referred_by_level_1 == $handler->view->args[0]) {
-  echo \'$\' . $row->field_level_1_commission;
+  echo \'<span title="\' . t(\'First level commission\') .\'">\';
+  echo \'$\' . $row->field_level_1_commission . \'<sup>1</sup>\';
+  echo \'</span>\';
 } else {
-  echo \'$\' . $row->field_level_2_commission;
+  echo \'<span title="\' . t(\'Second level commission\') .\'">\';
+  echo \'$\' . $row->field_level_2_commission . \'<sup>2</sup>\';
+  echo \'</span>\';
 }
 ?>';
   $handler->display->display_options['fields']['php']['use_php_click_sortable'] = '0';
